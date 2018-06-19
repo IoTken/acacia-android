@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Acacia</string>
+    <string name="text_user_name">UserName</string>
+    <string name="action_logout">Logout</string>
 </resources>
