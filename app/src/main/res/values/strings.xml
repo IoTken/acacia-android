@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Acacia</string>
     <string name="text_measurement_data">Firebase 測定データ</string>
+    <string name="text_read_date">Read Date</string>
+    <string name="edit_text_read_date">20080701</string>
+    <string name="hint_read_date">yyyyMMdd</string>
     <string name="text_user_name">UserName</string>
     <string name="button_write">書き込み</string>
     <string name="button_read">読み込み</string>

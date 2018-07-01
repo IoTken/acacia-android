@@ -34,16 +34,16 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Read Date" />
+            android:text="@string/text_read_date" />
 
         <EditText
             android:id="@+id/editText_readDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="yyyyMMdd"
-            android:inputType="number"
-            android:text="20080701" />
+            android:hint="@string/hint_read_date"
+            android:inputType="date"
+            android:text="@string/edit_text_read_date" />
 
 
         <LinearLayout
