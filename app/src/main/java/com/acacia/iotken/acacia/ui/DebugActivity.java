@@ -12,14 +12,18 @@ import android.widget.TextView;
 
 import com.acacia.iotken.acacia.R;
 import com.acacia.iotken.acacia.entity.MeasurementData;
-import com.acacia.iotken.acacia.model.Firebase;
+import com.acacia.iotken.acacia.model.FirebaseManager;
 import com.acacia.iotken.acacia.model.Utilities;
+import com.google.firebase.database.DatabaseError;
 
 import java.util.Date;
+import java.util.Map;
 
 public class DebugActivity extends AppCompatActivity {
 
     private static final String TAG = "DebugActivity";
+
+    private String mReadDate = "20080701";
 
     // LogText
     private String mLogText = "";
@@ -37,8 +41,20 @@ public class DebugActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d(TAG,"onClick button_measurement_read");
                 addLog("*** 読み込み ***\n");
-                Firebase.readMeasurementData("20180101");
-                addLog("*** 読み込み完了 ***\n\n");
+                FirebaseManager.readMeasurementData(new FirebaseManager.OnFinishedListener() {
+                    @Override
+                    public void onSuccess(Map<String, MeasurementData> result) {
+                        addLog("date:\n" + mReadDate + "\n\n");
+                        addLog("result:\n" +result + "\n\n");
+                        addLog("*** 読み込み完了 ***\n\n");
+                    }
+                    @Override
+                    public void onFailure(DatabaseError error) {
+                        addLog("*** error:\n" + error + "\n\n");
+                        addLog("*** 読み込み失敗 ***\n\n");
+                    }
+
+                }, mReadDate);
             }
         });
 
@@ -47,7 +63,7 @@ public class DebugActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d(TAG,"onClick button_measurement_write");
                 addLog("*** 書き込み ***\n\n");
-                MeasurementData data = Firebase.createMockMeasurementData();
+                MeasurementData data = FirebaseManager.createMockMeasurementData();
 
                 data.toMap().get("time");
 
@@ -60,7 +76,7 @@ public class DebugActivity extends AppCompatActivity {
                 addLog("data:\n" + data.toMap().toString() + "\n\n");
 
                 // write data
-                Firebase.writeMeasurementData(data);
+                FirebaseManager.writeMeasurementData(data);
 
                 addLog("*** 書き込み完了 ***\n\n");
             }
@@ -71,7 +87,7 @@ public class DebugActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         clearLog();
-        addLog(Firebase.isSingIn() ? "*** Firebase OK ***\n\n" : "*** Firebase NG Please Login. ***\n\n");
+        addLog(FirebaseManager.isSingIn() ? "*** Firebase OK ***\n\n" : "*** Firebase NG Please Login. ***\n\n");
     }
 
     @Override
