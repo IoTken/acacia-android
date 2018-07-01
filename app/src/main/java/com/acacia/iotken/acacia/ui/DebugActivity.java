@@ -25,6 +25,7 @@ public class DebugActivity extends AppCompatActivity {
     private static final String TAG = "DebugActivity";
 
     private String mReadDate = "20080701";
+    private ScrollView scrollView;
 
     // LogText
     private String mLogText = "";
@@ -35,6 +36,8 @@ public class DebugActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_debug);
+
+        scrollView = findViewById(R.id.scrollView);
 
         // Button Event
         findViewById(R.id.button_measurement_read).setOnClickListener(new View.OnClickListener() {
@@ -56,7 +59,6 @@ public class DebugActivity extends AppCompatActivity {
                         addLog("*** error:\n" + error + "\n\n");
                         addLog("*** 読み込み失敗 ***\n\n");
                     }
-
                 }, readDate);
             }
         });
@@ -139,11 +141,10 @@ public class DebugActivity extends AppCompatActivity {
         TextView textView = findViewById(R.id.text_log);
         textView.setText(mLogText);
 
-        final ScrollView scrollView = findViewById(R.id.scrollView);
-
         scrollView.post(new Runnable() {
             public void run() {
-                scrollView.scrollTo(0, scrollView.getBottom());
+                Log.d(TAG,"scrollView.FOCUS_DOWN");
+                scrollView.fullScroll(scrollView.FOCUS_DOWN);
             }
         });
     }
