@@ -25,9 +25,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/text_measurement_data"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             tools:layout_editor_absoluteX="77dp"
             tools:layout_editor_absoluteY="126dp" />
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Read Date" />
+
+        <EditText
+            android:id="@+id/editText_readDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="yyyyMMdd"
+            android:inputType="number"
+            android:text="20080701" />
 
 
         <LinearLayout

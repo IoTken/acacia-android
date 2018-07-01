@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -41,10 +42,12 @@ public class DebugActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d(TAG,"onClick button_measurement_read");
                 addLog("*** 読み込み ***\n");
+                EditText editText = findViewById(R.id.editText_readDate);
+                final String readDate = editText.getText().toString();
                 FirebaseManager.readMeasurementData(new FirebaseManager.OnFinishedListener() {
                     @Override
                     public void onSuccess(Map<String, MeasurementData> result) {
-                        addLog("date:\n" + mReadDate + "\n\n");
+                        addLog("date:\n" + readDate + "\n\n");
                         addLog("result:\n" +result + "\n\n");
                         addLog("*** 読み込み完了 ***\n\n");
                     }
@@ -54,7 +57,7 @@ public class DebugActivity extends AppCompatActivity {
                         addLog("*** 読み込み失敗 ***\n\n");
                     }
 
-                }, mReadDate);
+                }, readDate);
             }
         });
 
