@@ -1,4 +1,4 @@
-package com.acacia.iotken.acacia;
+package com.acacia.iotken.acacia.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.acacia.iotken.acacia.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -82,6 +83,11 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
+        if (id == R.id.action_debug) {
+            Intent intent = new Intent(getApplication(), DebugActivity.class);
+            startActivity(intent);
+            return true;
+        }
         if (id == R.id.action_logout) {
             signOut();
 
