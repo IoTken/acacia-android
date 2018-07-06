@@ -66,6 +66,39 @@
                 android:text="@string/button_read" />
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_waypoint_data" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_waypoint_write"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/button_write" />
+
+            <Button
+                android:id="@+id/button_waypoint_read"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/button_read" />
+
+            <Button
+                android:id="@+id/button_waypoint_remove"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/button_remove" />
+        </LinearLayout>
+
         <ScrollView
             android:id="@+id/scrollView"
             android:layout_width="match_parent"

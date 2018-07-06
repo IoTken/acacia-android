@@ -9,11 +9,11 @@ import java.util.Map;
 public class MeasurementData {
 
     public long time;            // 測定時間（UNIXTIME（秒））
-    public Double latitude;         // 緯度（-90 〜 +90）
-    public Double longitude;        // 緯度（-180 〜 +180）
-    public Double temperature;      // 温度（℃）
-    public Double humidity;         // 湿度（%）
-    public Double discomfort_index; // 不快指数
+    public double latitude;         // 緯度（-90 〜 +90）
+    public double longitude;        // 緯度（-180 〜 +180）
+    public double temperature;      // 温度（℃）
+    public double humidity;         // 湿度（%）
+    public double discomfort_index; // 不快指数
 
     public MeasurementData() {
     }
