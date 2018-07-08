@@ -89,7 +89,7 @@ public class FirebaseManager {
             return;
         }
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
-        dbRef.child(userId).setValue(data.toMap());
+        dbRef.child(userId).child("way_point").setValue(data.toMap());
     }
 
     /**
@@ -102,7 +102,7 @@ public class FirebaseManager {
             return;
         }
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
-        dbRef.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+        dbRef.child(userId).child("way_point").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot dataSnapshot) {
                 Log.d(TAG, "onDataChange wayPointDataMap raw:" + dataSnapshot.getValue());
