@@ -170,11 +170,11 @@ public class FirebaseManager {
         WayPoint wayPoint2 = new WayPoint(35.1, 136.1);
 
         Measurement measurement = new Measurement();
-        measurement.wayPointMap.put("wayPointId1_1", wayPoint1);
-        measurement.wayPointMap.put("wayPointId1_2", wayPoint2);
+        measurement.wayPointMap.put("way_point_id_1_1", wayPoint1);
+        measurement.wayPointMap.put("way_point_id_1_2", wayPoint2);
 
         WayPointData wayPointData = new WayPointData();
-        wayPointData.measurementMap.put("measurementId1", measurement);
+        wayPointData.measurementMap.put("measurement_id_1", measurement);
 
         return wayPointData;
     }
@@ -185,11 +185,11 @@ public class FirebaseManager {
         WayPoint wayPoint2 = new WayPoint(35.2, 136.2);
 
         Measurement measurement = new Measurement();
-        measurement.wayPointMap.put("wayPointId2_1", wayPoint1);
-        measurement.wayPointMap.put("wayPointId2_2", wayPoint2);
+        measurement.wayPointMap.put("way_point_id_2_1", wayPoint1);
+        measurement.wayPointMap.put("way_point_id_2_2", wayPoint2);
 
         WayPointData wayPointData = new WayPointData();
-        wayPointData.measurementMap.put("measurementId2", measurement);
+        wayPointData.measurementMap.put("measurement_id_2", measurement);
 
         return wayPointData;
     }
