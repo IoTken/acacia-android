@@ -43,7 +43,7 @@ public class FirebaseManager {
         /**
          * @param result
          */
-        void onSuccess(Map<String, WayPointData> result);
+        void onSuccess(WayPointData result);
 
         void onFailure(DatabaseError databaseError);
 
@@ -81,21 +81,21 @@ public class FirebaseManager {
         });
     }
 
-    // WaypointData
-    public static void writeWaypointData(WayPointData data) {
+    // WayPointData
+    public static void writeWayPointData(WayPointData data) {
         String userId = FirebaseManager.userId();
         if (userId == null || userId.isEmpty()) {
             Log.d(TAG, "userId is null or empty");
             return;
         }
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
-        dbRef.child(userId).updateChildren(data.toMap());
+        dbRef.child(userId).setValue(data.toMap());
     }
 
     /**
      * measurementId以下を取得します。
      */
-    public static void readWaypointData(final OnFinishedWayPointDataListener listener) {
+    public static void readWayPointData(final OnFinishedWayPointDataListener listener) {
         String userId = FirebaseManager.userId();
         if (userId == null || userId.isEmpty()) {
             Log.d(TAG, "userId is null or empty");
@@ -105,14 +105,22 @@ public class FirebaseManager {
         dbRef.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot dataSnapshot) {
+                Log.d(TAG, "onDataChange wayPointDataMap raw:" + dataSnapshot.getValue());
 
-                Map<String, WayPointData> waypointDataMap = (HashMap<String, WayPointData>) dataSnapshot.getValue();
+                WayPointData wayPointData = new WayPointData();
+                wayPointData.measurementMap = (Map<String, Measurement>) dataSnapshot.getValue();
 
-                Log.d(TAG, "onDataChange waypointDataMap:" + waypointDataMap);
-
+                for (DataSnapshot measurementSnapshot : dataSnapshot.getChildren()) {
+                    Measurement measurement = new Measurement();
+                    for (DataSnapshot wayPointSnapshot : measurementSnapshot.getChildren()) {
+                        WayPoint wayPoint = wayPointSnapshot.getValue(WayPoint.class);
+                        measurement.wayPointMap.put(wayPointSnapshot.getKey() ,wayPoint);
+                    }
+                    wayPointData.measurementMap.put(measurementSnapshot.getKey(), measurement);
+                }
 
                 if (listener != null) {
-                    listener.onSuccess(null);
+                    listener.onSuccess(wayPointData);
                 }
             }
 
@@ -127,7 +135,7 @@ public class FirebaseManager {
         });
     }
 
-    // Firebase Utilityes
+    // Firebase Utilities
     public static boolean isSingIn() {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         return mAuth.getCurrentUser() != null;
@@ -156,17 +164,32 @@ public class FirebaseManager {
         return data;
     }
 
-    public static WayPointData createMockWaypointData() {
+    public static WayPointData createMockWayPointData1() {
 
         WayPoint wayPoint1 = new WayPoint(35.1, 136.2);
         WayPoint wayPoint2 = new WayPoint(35.2, 136.3);
 
         Measurement measurement = new Measurement();
-        measurement.wayPointMap.put("wayPointId1", wayPoint1);
-        measurement.wayPointMap.put("wayPointId2", wayPoint2);
+        measurement.wayPointMap.put("wayPointId1_1", wayPoint1);
+        measurement.wayPointMap.put("wayPointId1_2", wayPoint2);
 
         WayPointData wayPointData = new WayPointData();
-        wayPointData.measurementMap.put("measurementId", measurement);
+        wayPointData.measurementMap.put("measurementId1", measurement);
+
+        return wayPointData;
+    }
+
+    public static WayPointData createMockWayPointData2() {
+
+        WayPoint wayPoint1 = new WayPoint(35.1, 136.2);
+        WayPoint wayPoint2 = new WayPoint(35.2, 136.3);
+
+        Measurement measurement = new Measurement();
+        measurement.wayPointMap.put("wayPointId2_1", wayPoint1);
+        measurement.wayPointMap.put("wayPointId2_2", wayPoint2);
+
+        WayPointData wayPointData = new WayPointData();
+        wayPointData.measurementMap.put("measurementId2", measurement);
 
         return wayPointData;
     }

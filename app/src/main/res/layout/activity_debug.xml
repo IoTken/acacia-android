@@ -78,11 +78,18 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button_waypoint_write"
+                android:id="@+id/button_waypoint_write1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/button_write" />
+                android:text="@string/button_write1" />
+
+            <Button
+                android:id="@+id/button_waypoint_write2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/button_write2" />
 
             <Button
                 android:id="@+id/button_waypoint_read"
@@ -90,13 +97,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/button_read" />
-
-            <Button
-                android:id="@+id/button_waypoint_remove"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/button_remove" />
         </LinearLayout>
 
         <ScrollView

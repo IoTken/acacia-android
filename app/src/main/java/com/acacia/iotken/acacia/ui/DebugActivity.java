@@ -88,45 +88,57 @@ public class DebugActivity extends AppCompatActivity {
             }
         });
 
-        // WaypointData
+        // WayPointData
         findViewById(R.id.button_waypoint_read).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG,"onClick button_waypoint_read");
-                addLog("*** Waypoint 読み込み ***\n");
-                EditText editText = findViewById(R.id.editText_readDate);
-                final String readDate = editText.getText().toString();
-                FirebaseManager.readMeasurementData(new FirebaseManager.OnFinishedMeasurementDataListener() {
+                addLog("*** WayPoint 読み込み ***\n");
+                FirebaseManager.readWayPointData(new FirebaseManager.OnFinishedWayPointDataListener() {
                     @Override
-                    public void onSuccess(Map<String, MeasurementData> result) {
-                        addLog("date:\n" + readDate + "\n\n");
-                        addLog("result:\n" +result + "\n\n");
-                        addLog("*** Waypoint 読み込み完了 ***\n\n");
+                    public void onSuccess(WayPointData result) {
+                        addLog("result:\n" +result.toMap() + "\n\n");
+                        addLog("*** WayPoint 読み込み完了 ***\n\n");
                     }
+
                     @Override
                     public void onFailure(DatabaseError error) {
                         addLog("*** error:\n" + error + "\n\n");
-                        addLog("*** Waypoint 読み込み失敗 ***\n\n");
+                        addLog("*** WayPoint 読み込み失敗 ***\n\n");
                     }
-                }, readDate);
+                });
             }
         });
 
-        findViewById(R.id.button_waypoint_write).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.button_waypoint_write1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG,"onClick button_waypoint_write");
-                addLog("*** Waypoint 書き込み ***\n\n");
-                WayPointData data = FirebaseManager.createMockWaypointData();
-
-                data.toMap().get("time");
+                Log.d(TAG,"onClick button_waypoint_write2");
+                addLog("*** WayPoint 書き込み1 ***\n\n");
+                WayPointData data = FirebaseManager.createMockWayPointData1();
 
                 addLog("data:\n" + data.toMap().toString() + "\n\n");
 
                 // write data
-                FirebaseManager.writeWaypointData(data);
+                FirebaseManager.writeWayPointData(data);
 
-                addLog("*** Waypoint 書き込み完了 ***\n\n");
+                addLog("*** WayPoint 書き込み1完了 ***\n\n");
+            }
+        });
+
+        findViewById(R.id.button_waypoint_write2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG,"onClick button_waypoint_write2");
+                addLog("*** WayPoint 書き込み2 ***\n\n");
+                WayPointData data = FirebaseManager.createMockWayPointData2();
+
+                addLog("data:\n" + data.toMap().toString() + "\n\n");
+
+                // write data
+                FirebaseManager.writeWayPointData(data);
+
+                addLog("*** WayPoint 書き込み2完了 ***\n\n");
             }
         });
     }

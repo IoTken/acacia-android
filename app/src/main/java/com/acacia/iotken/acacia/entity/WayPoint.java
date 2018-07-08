@@ -6,8 +6,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class WayPoint {
-    public Double latitude;         // 緯度（-90 〜 +90）
-    public Double longitude;        // 緯度（-180 〜 +180）
+    public double latitude;         // 緯度（-90 〜 +90）
+    public double longitude;        // 緯度（-180 〜 +180）
+
+    public WayPoint() {
+        // Default constructor required for calls to DataSnapshot.getValue(WayPoint.class)
+    }
 
     public WayPoint(double latitude, double longitude) {
         this.latitude = latitude;

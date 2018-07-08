@@ -7,8 +7,9 @@
     <string name="hint_read_date">yyyyMMdd</string>
     <string name="text_user_name">UserName</string>
     <string name="button_write">書き込み</string>
+    <string name="button_write1">書き込み1</string>
+    <string name="button_write2">書き込み2</string>
     <string name="button_read">読み込み</string>
-    <string name="button_remove">削除</string>
     <string name="action_main">Main</string>
     <string name="action_debug">Debug</string>
     <string name="action_logout">Logout</string>
