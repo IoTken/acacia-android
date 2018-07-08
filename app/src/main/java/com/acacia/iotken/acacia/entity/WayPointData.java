@@ -19,6 +19,10 @@ public class WayPointData {
 
     @Exclude
     public Map<String, Object> toMap() {
+        if (measurementMap == null) {
+            return null;
+        }
+
         HashMap<String, Object> result = new HashMap<>();
         for (Map.Entry<String, Measurement> measurement : measurementMap.entrySet())
             result.put(measurement.getKey(), measurement.getValue().toMap());
