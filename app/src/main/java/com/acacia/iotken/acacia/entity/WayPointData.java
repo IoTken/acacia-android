@@ -5,6 +5,10 @@ import com.google.firebase.database.Exclude;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * WayPointを保持するクラスです。
+ * 内部にMeasurement, WayPointを保持します。
+ */
 public class WayPointData {
 
     public Map<String, Measurement> measurementMap;

@@ -6,6 +6,9 @@ import com.google.firebase.database.Exclude;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 測定データを保持するクラスです。
+ */
 public class MeasurementData {
 
     public long time;            // 測定時間（UNIXTIME（秒））

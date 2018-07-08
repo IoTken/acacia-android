@@ -5,6 +5,11 @@ import com.google.firebase.database.Exclude;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * WayPointのMeasurementId以下を保持するクラスです。
+ * 親はWayPointData
+ * 子はWayPoint
+ */
 public class Measurement {
     public Map<String, WayPoint> wayPointMap;
 

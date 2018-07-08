@@ -166,8 +166,8 @@ public class FirebaseManager {
 
     public static WayPointData createMockWayPointData1() {
 
-        WayPoint wayPoint1 = new WayPoint(35.1, 136.2);
-        WayPoint wayPoint2 = new WayPoint(35.2, 136.3);
+        WayPoint wayPoint1 = new WayPoint(35.1, 136.1);
+        WayPoint wayPoint2 = new WayPoint(35.1, 136.1);
 
         Measurement measurement = new Measurement();
         measurement.wayPointMap.put("wayPointId1_1", wayPoint1);
@@ -181,8 +181,8 @@ public class FirebaseManager {
 
     public static WayPointData createMockWayPointData2() {
 
-        WayPoint wayPoint1 = new WayPoint(35.1, 136.2);
-        WayPoint wayPoint2 = new WayPoint(35.2, 136.3);
+        WayPoint wayPoint1 = new WayPoint(35.2, 136.2);
+        WayPoint wayPoint2 = new WayPoint(35.2, 136.2);
 
         Measurement measurement = new Measurement();
         measurement.wayPointMap.put("wayPointId2_1", wayPoint1);

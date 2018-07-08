@@ -5,6 +5,10 @@ import com.google.firebase.database.Exclude;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * WayPointを保持するクラスです。
+ * 親はMeasurement
+ */
 public class WayPoint {
     public double latitude;         // 緯度（-90 〜 +90）
     public double longitude;        // 緯度（-180 〜 +180）
