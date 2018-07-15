@@ -83,26 +83,16 @@ public class FirebaseManager {
 
     // WayPointData
     public static void writeWayPointData(WayPointData data) {
-        String userId = FirebaseManager.userId();
-        if (userId == null || userId.isEmpty()) {
-            Log.d(TAG, "userId is null or empty");
-            return;
-        }
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
-        dbRef.child(userId).child("way_point").setValue(data.toMap());
+        dbRef.child("way_point").setValue(data.toMap());
     }
 
     /**
      * measurementId以下を取得します。
      */
     public static void readWayPointData(final OnFinishedWayPointDataListener listener) {
-        String userId = FirebaseManager.userId();
-        if (userId == null || userId.isEmpty()) {
-            Log.d(TAG, "userId is null or empty");
-            return;
-        }
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
-        dbRef.child(userId).child("way_point").addListenerForSingleValueEvent(new ValueEventListener() {
+        dbRef.child("way_point").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot dataSnapshot) {
                 Log.d(TAG, "onDataChange wayPointDataMap raw:" + dataSnapshot.getValue());
